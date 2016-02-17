@@ -26,7 +26,7 @@ class SeniorDeveloper < Developer
        if rand == 0
           p 'Что то лень'
         else
-          puts "#{@name}: выполнены задачи \"#{@task_list.delete_at(0)}, #{@task_list.delete_at(1)}\". Осталось задач: #{@task_list.length}"
+          puts "#{@name}: выполнены задачи \"#{@task_list.delete_at(0)}, #{@task_list.delete_at(0)}\". Осталось задач: #{@task_list.length}"
       end
     end
   end
