@@ -14,25 +14,22 @@ class SeniorDeveloper < Developer
     else
       @task_num += 1
       @task_list << task_name
-      puts "#{@name}: добавлена задача \"#{task_name}\". Всего в списке задач: #{@task_num}"
+      puts "#{@name}: добавлена задача \"#{ task_name }\". Всего в списке задач: #{ @task_num }"
     end
   end
 
   def work!
     rand = Random.rand(2)
-    if @task_list.length <= 0
-      raise(ArgumentError, 'Нечего делать!')
+    raise(ArgumentError, 'Нечего делать!') if @task_list.length <= 0
+    if rand == 0
+      puts 'Что то лень'
     else
-       if rand == 0
-          p 'Что то лень'
-        else
-          puts "#{@name}: выполнены задачи \"#{@task_list.delete_at(0)}, #{@task_list.delete_at(0)}\". Осталось задач: #{@task_list.length}"
-      end
+      puts "#{@name}: выполнены задачи \"#{ @task_list.shift }, #{ @task_list.shift }\". Осталось задач: #{ @task_list.length }"
     end
   end
 
   def can_add_task?
-    @task_list.length < max_tasks ? true : false
+    @task_list.length < max_tasks
   end
 end
 

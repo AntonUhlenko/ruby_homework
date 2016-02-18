@@ -9,28 +9,19 @@ class JuniorDeveloper < Developer
   end
 
   def add_task(task_name)
-    if task_name.length > 20
-      puts 'Слишком сложно!'
-    else
-      if @task_list.length >= max_tasks
-        raise(ArgumentError, 'Слишком много работы!')
-      else
-        @task_num += 1
-        @task_list << task_name
-        puts "#{@name}: добавлена задача \"#{task_name}\". Всего в списке задач: #{@task_num}"
-      end
-    end
+    raise(ArgumentError, 'Слишком сложно!') if task_name.length > 20
+    raise(ArgumentError, 'Слишком много работы!') if @task_list.length >= max_tasks
+    @task_num += 1
+    @task_list << task_name
+    puts "#{@name}: добавлена задача \"#{ task_name }\". Всего в списке задач: #{ @task_num }"
   end
 
   def work!
-    if @task_list.length <= 0
-      raise(ArgumentError, 'Нечего делать!')
-    else
-      puts "#{@name}: пытаюсь делать задачу \"#{@task_list.delete_at(0)}\". Осталось задач: #{@task_list.length}"
-    end
+    raise(ArgumentError, 'Нечего делать!') if @task_list.length <= 0
+    puts "#{@name}: пытаюсь делать задачу \"#{ @task_list.shift }\". Осталось задач: #{ @task_list.length }"
   end
 
   def can_add_task?
-    @task_list.length < max_tasks ? true : false
+    @task_list.length < max_tasks
   end
 end

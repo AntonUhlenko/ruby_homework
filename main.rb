@@ -7,6 +7,7 @@ i = 0
 10.times { i += 1; dev.add_task("task_#{i}") }
 
 dev.can_add_task?
+dev.tasks
 dev.status
 dev.can_work?
 dev.work!
