@@ -8,8 +8,12 @@ class Developer
     @task_list = []
   end
 
+  def max_tasks
+    self.class::MAX_TASKS
+  end
+
   def add_task(task_name)
-    raise(ArgumentError, 'Слишком много работы!') if @task_list.length >= MAX_TASKS
+    raise(ArgumentError, 'Слишком много работы!') if @task_list.length >= max_tasks
     @task_num += 1
     @task_list << task_name
     puts "#{@name}: добавлена задача \"#{ task_name }\". Всего в списке задач: #{ @task_num }"
@@ -19,8 +23,12 @@ class Developer
     @task_list.each_with_index { |elem, index| "#{index += 1 }. #{ elem }" }
   end
 
+  def tasks_count_zero?
+    raise(ArgumentError, 'Нечего делать!') if @task_list.length == 0
+  end
+
   def work!
-    raise(ArgumentError, 'Нечего делать!') if @task_list.length <= 0
+    tasks_count_zero?
     puts "#{@name}: выполнена задача \"#{ @task_list.shift }\". Осталось задач: #{ @task_list.length }"
   end
 
@@ -36,11 +44,11 @@ class Developer
   end
 
   def can_add_task?
-    @task_list.length < MAX_TASKS
+    @task_list.length < max_tasks
   end
 
   def can_work?
-    @task_list.length == 0
+    @task_list.length != 0
   end
 end
 
