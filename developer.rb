@@ -14,9 +14,8 @@ class Developer
 
   def add_task(task_name)
     raise(ArgumentError, 'Слишком много работы!') if @task_list.length >= max_tasks
-    @task_num += 1
     @task_list << task_name
-    puts "#{@name}: добавлена задача \"#{ task_name }\". Всего в списке задач: #{ @task_num }"
+    puts "#{@name}: добавлена задача \"#{ task_name }\". Всего в списке задач: #{ @task_list.length }"
   end
 
   def tasks
