@@ -34,7 +34,7 @@ class Developer
 
   def status
     case
-      when @task_list.length == 0
+      when @task_list.length.empty?
          'свободен'
       when @task_list.length > 0 && @task_list.length < max_tasks
          'работаю'
