@@ -36,7 +36,7 @@ class Developer
     case
       when @task_list.length == 0
          'свободен'
-      when @task_list.length > 0 && @task_list.length <= 9
+      when @task_list.length > 0 && @task_list.length < max_tasks
          'работаю'
       else
          'занят'
