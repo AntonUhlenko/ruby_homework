@@ -19,7 +19,7 @@ class Developer
   end
 
   def tasks
-    @task_list.each_with_index { |elem, index| "#{index += 1 }. #{ elem }" }
+    @task_list.each_with_index { |elem, index| puts "#{index += 1 }. #{ elem }" }
   end
 
   def tasks_count_zero?
