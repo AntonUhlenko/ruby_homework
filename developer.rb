@@ -19,7 +19,7 @@ class Developer
   end
 
   def tasks
-    @task_list.each_with_index { |elem, index| puts "#{index += 1 }. #{ elem }" }
+    @task_list.map.with_index { |t, i| "#{i + 1}. #{t}" }.join("\n")
   end
 
   def tasks_count_zero?
@@ -33,9 +33,9 @@ class Developer
 
   def status
     case
-      when @task_list.length.empty?
+      when @task_list.length.zero?
          'свободен'
-      when @task_list.length > 0 && @task_list.length < max_tasks
+      when @task_list.length.nonzero? && @task_list.length < max_tasks
          'работаю'
       else
          'занят'
