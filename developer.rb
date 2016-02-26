@@ -23,7 +23,7 @@ class Developer
   end
 
   def tasks_count_zero?
-    raise(ArgumentError, 'Нечего делать!') if @task_list.length == 0
+    raise(ArgumentError, 'Нечего делать!') if @task_list.length.zero?
   end
 
   def work!
@@ -47,7 +47,7 @@ class Developer
   end
 
   def can_work?
-    @task_list.length != 0
+    @task_list.length.nonzero?
   end
 end
 
