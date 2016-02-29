@@ -1,11 +1,18 @@
 class Developer
 
   MAX_TASKS = 10
+  DEV_TYPE = :developer
+
+  attr_reader :name, :task_num
 
   def initialize(name)
     @name = name
     @task_num = 0
     @task_list = []
+  end
+
+  def type
+    self.class::DEV_TYPE
   end
 
   def max_tasks
@@ -19,7 +26,7 @@ class Developer
   end
 
   def tasks
-    @task_list.map.with_index { |t, i| "#{i + 1}. #{t}" }.join("\n")
+    @task_list.each_with_index.map { |task, index| "#{index + 1}. #{task}" }.join("\n")
   end
 
   def tasks_count_zero?

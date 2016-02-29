@@ -3,6 +3,7 @@ require_relative 'developer'
 class JuniorDeveloper < Developer
 
   MAX_TASKS = 5
+  DEV_TYPE = :junior
 
   def add_task(task_name)
     raise(ArgumentError, 'Слишком сложно!') if task_name.length > 20
