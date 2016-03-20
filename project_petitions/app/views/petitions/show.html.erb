@@ -1,15 +1,14 @@
 <h1> Петиция № <%= @petition.id %></h1>
-<p>
-  <strong>Название:</strong>
-  <%= @petition.title %>
-</p>
-
+<p><h3><strong><%= @petition.title %></strong></h3></p>
+<p><%= @petition.created_at.strftime("%d/%m/%Y %H:%M")%></p>
 <p>
   <strong>Описание:</strong>
   <%= @petition.text %>
 </p>
-
 <p>
-  <strong>Автор:</strong>
-  <%= @petition.author %>
+  <strong>Голосов:</strong>
+  <%= @petition.votes.count %>
 </p>
+<td><%= button_to 'Поддержать', petition_votes_path(@petition), method: :post unless (@petition.user_id == current_user.id) || @petition.expired? %></td>
+
+

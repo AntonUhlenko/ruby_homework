@@ -9,9 +9,18 @@ Rails.application.routes.draw do
 
   root 'petitions#last10'
 
-  resources :petitions
+  resources :petitions do
+    resources :votes
+  end
   resources :users
   resources :sessions
+
+  # resources :petitions do
+  #   member do
+  #     post 'give_vote'
+  #   end
+  # end
+  # resources :votes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

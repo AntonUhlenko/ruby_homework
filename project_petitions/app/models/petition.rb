@@ -1,9 +1,10 @@
 class Petition < ActiveRecord::Base
 
   belongs_to :user
-      # class_name: "User",
-      # foreign_key: :author,
-      # primary_key: :id
+  has_many :votes
+
+  EXPIRATION_DATE = 30
+  VOTES_THRESHOLD = 100
 
   validates :title,  :presence => true,
           :uniqueness => true,
@@ -12,4 +13,16 @@ class Petition < ActiveRecord::Base
   validates :text, :presence => true,
           :length => {:minimum => 1},
           :uniqueness => true
+
+  validate :edit_only_active_petition, on: :update
+
+  def edit_only_active_petition
+    petition = Petition.find(petition_id)
+    errors.add(:petition_id, "Нельзя редактировать устаревшую петицию") if petition.expired?
+  end
+
+  def expired?
+    created_at < EXPIRATION_DATE.day.ago
+  end
+
 end

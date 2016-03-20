@@ -1,6 +1,6 @@
-<h1> Новая петиция </h1>
+<h1> Редактирование петиции </h1>
 
-<%= form_for :petition, url: petitions_path do |f| %>
+<%= form_for :petition, url: petition_path(@petition), method: :patch do |f| %>
     <% if @petition.errors.any? %>
         <div class="error_messages">
           <h2>Form is invalid</h2>
@@ -22,6 +22,6 @@
     </p>
 
     <p>
-      <%= f.submit "Создать петицию", class: 'btn btn-success pull-right' %>
+      <%= f.submit "Сохранить изменения", class: 'btn btn-success pull-right' %>
     </p>
 <% end %>

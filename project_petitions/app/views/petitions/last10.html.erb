@@ -1,15 +1,18 @@
 <h1>Последние петиции</h1>
-<table>
+<table class="table table-striped">
   <tr>
     <th>Петиция</th>
     <th>Автор</th>
+    <th>Голоса</th>
+    <th>Дата создания</th>
   </tr>
 
   <% @petitions.each do |petition| %>
       <tr>
-        <td><%= petition.title %></td>
+        <td><%= link_to petition.title, petition_path(petition) %></td>
         <td><%= petition.author %></td>
-        <td><%= link_to 'Просмотр', petition_path(petition) %></td>
+        <td><%= petition.votes.count %></td>
+        <td><%= petition.created_at.strftime("%d/%m/%Y %H:%M")%></td>
       </tr>
   <% end %>
 </table>
